@@ -77,8 +77,8 @@ public class PostService {
       throw new InvalidInputEx();
 
     LocalDate parsedDate = converterTool.stringToLocalDate(date);
-    String image = "/" + fileTool.uploadPostImage(file, name);
-//    String image = cloudinaryService.uploadFile(file);
+//    String image = "/" + fileTool.uploadPostImage(file, name);
+    String image = cloudinaryService.uploadFile(file);
     Category cat = categoryRepo.findById(Long.parseLong(category)).get();
     Post post;
 
