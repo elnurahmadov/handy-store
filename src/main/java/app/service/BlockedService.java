@@ -39,5 +39,4 @@ public class BlockedService {
     if (validationTool.isBlocked(currentUserId, loggedUserId))
       throw new BlockedUserEx();
   }
-
 }
