@@ -1,7 +1,4 @@
-IBA Tech Academy final project - HANDY by Ayshan Rzayeva || Shafa Mammadova || Leman Javadova || Emin Israfilzadeh
-
-Deployed link:
-https://handy-iba.herokuapp.com/
+Soft Solution final project - HANDY by Elnur Ahmadov
 
 Minimum data to be able to run project:
 
