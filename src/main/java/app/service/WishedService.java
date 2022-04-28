@@ -19,43 +19,43 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Service
 public class WishedService {
-  private final WishedRepo wishedRepo;
-  private final PostService postService;
-  private final ValidationTool validationTool;
+    private final WishedRepo wishedRepo;
+    private final PostService postService;
+    private final ValidationTool validationTool;
 
-  public List<Post> findWishedPosts(String userId) {
-    return wishedRepo.findAllByUserr(Long.parseLong(userId)).stream()
-            .map(w -> postService.findById(String.valueOf(w.getPost())))
-            .collect(Collectors.toList());
-  }
+    public List<Post> findWishedPosts(String userId) {
+        return wishedRepo.findAllByUserr(Long.parseLong(userId)).stream()
+                .map(w -> postService.findById(String.valueOf(w.getPost())))
+                .collect(Collectors.toList());
+    }
 
-  public long findCurrentWishedPostId(String userId, String postId) {
-    if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
-    return wishedRepo.findByUserrAndPost(Long.parseLong(userId), Long.parseLong(postId))
-            .orElseThrow(PostNotFoundEx::new).getPost();
-  }
+    public long findCurrentWishedPostId(String userId, String postId) {
+        if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
+        return wishedRepo.findByUserrAndPost(Long.parseLong(userId), Long.parseLong(postId))
+                .orElseThrow(PostNotFoundEx::new).getPost();
+    }
 
-  public List<Post> findFilteredWishedPosts(String userId, String name, String category) {
-    return findWishedPosts(userId).stream()
-            .filter(w -> w.getName().toLowerCase().contains(name.toLowerCase())
-                    && w.getCategory().getId() == Long.parseLong(category))
-            .collect(Collectors.toList());
-  }
+    public List<Post> findFilteredWishedPosts(String userId, String name, String category) {
+        return findWishedPosts(userId).stream()
+                .filter(w -> w.getName().toLowerCase().contains(name.toLowerCase())
+                        && w.getCategory().getId() == Long.parseLong(category))
+                .collect(Collectors.toList());
+    }
 
-  public void addWished(String userId, String postId) {
-    if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
-    if (findWishedPosts(userId).stream()
-            .anyMatch(w -> w.getId() == Long.parseLong(postId))) throw new DuplicateWishedEx();
+    public void addWished(String userId, String postId) {
+        if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
+        if (findWishedPosts(userId).stream()
+                .anyMatch(w -> w.getId() == Long.parseLong(postId))) throw new DuplicateWishedEx();
 
-    wishedRepo.save(new Wished(Long.parseLong(userId), Long.parseLong(postId)));
-  }
+        wishedRepo.save(new Wished(Long.parseLong(userId), Long.parseLong(postId)));
+    }
 
-  public void deleteWished(String userId, String postId) {
-    if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
-    if (findWishedPosts(userId).stream()
-            .noneMatch(w -> w.getId() == Long.parseLong(postId))) throw new NotWishedEx();
+    public void deleteWished(String userId, String postId) {
+        if (!validationTool.isParsableToLong(postId)) throw new InvalidInputEx();
+        if (findWishedPosts(userId).stream()
+                .noneMatch(w -> w.getId() == Long.parseLong(postId))) throw new NotWishedEx();
 
-    wishedRepo.deleteByPostAndUserr(Long.parseLong(postId), Long.parseLong(userId));
-  }
+        wishedRepo.deleteByPostAndUserr(Long.parseLong(postId), Long.parseLong(userId));
+    }
 
 }

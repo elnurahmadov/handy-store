@@ -20,44 +20,44 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/mypost")
 public class PostOperationsController {
 
-  private final PostService postService;
-  private final CategoryService categoryService;
-  private final CityService cityService;
-  private final UserService userService;
+    private final PostService postService;
+    private final CategoryService categoryService;
+    private final CityService cityService;
+    private final UserService userService;
 
-  @GetMapping()
-  public String handle_get() {
-    return "redirect:/myposts";
-  }
+    @GetMapping()
+    public String handle_get() {
+        return "redirect:/myposts";
+    }
 
-  @GetMapping("/{id}")
-  public String handle_get_id(Model model, @PathVariable String id, Authentication au) {
-    postService.isAuthorized(String.valueOf(getLoggedUser(au).getId()), id);
-    model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-    model.addAttribute("post", postService.findById(id));
-    model.addAttribute("categories", categoryService.findAll());
-    model.addAttribute("cities", cityService.getCities());
-    return "a_u-post";
-  }
+    @GetMapping("/{id}")
+    public String handle_get_id(Model model, @PathVariable String id, Authentication au) {
+        postService.isAuthorized(String.valueOf(getLoggedUser(au).getId()), id);
+        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("post", postService.findById(id));
+        model.addAttribute("categories", categoryService.findAll());
+        model.addAttribute("cities", cityService.getCities());
+        return "a_u-post";
+    }
 
-  @PostMapping("/{id}")
-  public String  handle_post(FormPost form,
-                             @RequestParam("image") MultipartFile file,
-                             @PathVariable String id,
-                             Authentication au) {
-    postService.addOrUpdate(
-            String.valueOf(getLoggedUser(au).getId()),
-            id,
-            form.getName(),
-            form.getCategory(),
-            form.getCity(),
-            form.getExpiryDate(),
-            file);
-    return ("redirect:/myposts");
-  }
+    @PostMapping("/{id}")
+    public String handle_post(FormPost form,
+                              @RequestParam("image") MultipartFile file,
+                              @PathVariable String id,
+                              Authentication au) {
+        postService.addOrUpdate(
+                String.valueOf(getLoggedUser(au).getId()),
+                id,
+                form.getName(),
+                form.getCategory(),
+                form.getCity(),
+                form.getExpiryDate(),
+                file);
+        return ("redirect:/myposts");
+    }
 
-  UserrDetails getLoggedUser(Authentication authentication) {
-    return (UserrDetails) authentication.getPrincipal();
-  }
+    UserrDetails getLoggedUser(Authentication authentication) {
+        return (UserrDetails) authentication.getPrincipal();
+    }
 
 }

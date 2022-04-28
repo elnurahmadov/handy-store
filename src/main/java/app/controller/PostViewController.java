@@ -26,9 +26,6 @@ public class PostViewController {
   private final UserService userService;
   private final PaginationTool<Post> paginationTool;
 
-  /**
-   * http://localhost:5000/myposts/2?sortField=name&sortDir=asc
-   */
   @RequestMapping()
   public RedirectView handle_get() {
     return new RedirectView("/myposts/1");
