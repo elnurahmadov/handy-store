@@ -10,11 +10,11 @@ import java.time.format.DateTimeFormatter;
 public class ConverterTool {
 
     public LocalDate stringToLocalDate(String date) {
-//    try {
+    try {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDate.parse(date, formatter);
-//    } catch (Exception e) {
-//      throw new InvalidDateFormatEx();
-//    }
+    } catch (Exception e) {
+      throw new InvalidDateFormatEx();
+    }
     }
 }

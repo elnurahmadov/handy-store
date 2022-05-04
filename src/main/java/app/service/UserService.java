@@ -35,7 +35,7 @@ public class UserService {
 
         Userr user = new Userr(email.toLowerCase(), passwordEncoder.encode(pass), LocalDateTime.now(), true);
         user.setName("Name");
-        user.setSurname("");
+        user.setSurname("Surname");
         user.setImage("/img/profile/user.png");
         user.setCity("Baku");
         userRepo.save(user);

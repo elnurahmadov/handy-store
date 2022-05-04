@@ -1,6 +1,5 @@
 package app.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.Objects;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="p_id")
+    @Column(name = "p_id")
     private long id;
     private String name;
     private String city;
@@ -27,7 +26,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "r_post_user",
-            joinColumns = {@JoinColumn(name="post_id",
+            joinColumns = {@JoinColumn(name = "post_id",
                     referencedColumnName = "p_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "user_id",
@@ -36,7 +35,7 @@ public class Post {
 
     @ManyToOne
     @JoinTable(name = "r_post_category",
-            joinColumns = {@JoinColumn(name="post_id",
+            joinColumns = {@JoinColumn(name = "post_id",
                     referencedColumnName = "p_id"),
             },
             inverseJoinColumns = {@JoinColumn(name = "category_id",
@@ -53,6 +52,7 @@ public class Post {
         this.status = true;
         this.date = LocalDate.now();
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(id);

@@ -35,7 +35,7 @@
 
     <form method="post" class="col-12 form-group d-inline-block e-form" enctype="multipart/form-data">
         <div th:if="${(param.error != null) and (param.error[0] == 'fillinfoemptyinput')}" class="alert alert-danger">
-            Please fill all necessery inputs
+            Please fill all necessary inputs
         </div>
 
         <div th:if="${(param.error != null) and (param.error[0] == 'usernamenotunique')}" class="alert alert-danger">

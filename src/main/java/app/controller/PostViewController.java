@@ -22,49 +22,49 @@ import java.util.Optional;
 @RequestMapping("/myposts")
 public class PostViewController {
 
-  private final PostService postService;
-  private final UserService userService;
-  private final PaginationTool<Post> paginationTool;
+    private final PostService postService;
+    private final UserService userService;
+    private final PaginationTool<Post> paginationTool;
 
-  @RequestMapping()
-  public RedirectView handle_get() {
-    return new RedirectView("/myposts/1");
-  }
+    @RequestMapping()
+    public RedirectView handle_get() {
+        return new RedirectView("/myposts/1");
+    }
 
-  @GetMapping("/{currentPage}")
-  public String handle_get(Model model, Authentication au,
-                           @PathVariable("currentPage") Optional<Integer> currentPageOp,
-                           @RequestParam("sortField") Optional<String> sortFieldOp,
-                           @RequestParam("sortDir") Optional<String> sortDirOp) {
+    @GetMapping("/{currentPage}")
+    public String handle_get(Model model, Authentication au,
+                             @PathVariable("currentPage") Optional<Integer> currentPageOp,
+                             @RequestParam("sortField") Optional<String> sortFieldOp,
+                             @RequestParam("sortDir") Optional<String> sortDirOp) {
 
-    int currentPage = currentPageOp.orElse(1);
-    String sortField = sortFieldOp.orElse("name");
-    String sortDir = sortDirOp.orElse("asc");
-    Page<Post> page = postService.findByUser(String.valueOf(getLoggedUser(au).getId()),
-            currentPage, sortField, sortDir);
+        int currentPage = currentPageOp.orElse(1);
+        String sortField = sortFieldOp.orElse("name");
+        String sortDir = sortDirOp.orElse("asc");
+        Page<Post> page = postService.findByUser(String.valueOf(getLoggedUser(au).getId()),
+                currentPage, sortField, sortDir);
 
-    paginationTool.controller(page, model, currentPage, sortField, sortDir);
+        paginationTool.controller(page, model, currentPage, sortField, sortDir);
 
-    model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-    model.addAttribute("posts", page);
-    return "manage-post";
-  }
+        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
+        model.addAttribute("posts", page);
+        return "manage-post";
+    }
 
 
-  @GetMapping("/delete/{id}")
-  public RedirectView handle_get(@PathVariable String id, Authentication au) {
-    postService.isAuthorized(String.valueOf(getLoggedUser(au).getId()), id);
-    postService.deactivate(id);
-    return new RedirectView("/myposts");
-  }
+    @GetMapping("/delete/{id}")
+    public RedirectView handle_get(@PathVariable String id, Authentication au) {
+        postService.isAuthorized(String.valueOf(getLoggedUser(au).getId()), id);
+        postService.deactivate(id);
+        return new RedirectView("/myposts");
+    }
 
-  @PostMapping("/{currentPage}")
-  public String handle_post() {
-    return "manage-post";
-  }
+    @PostMapping("/{currentPage}")
+    public String handle_post() {
+        return "manage-post";
+    }
 
-  UserrDetails getLoggedUser(Authentication authentication) {
-    return (UserrDetails) authentication.getPrincipal();
-  }
+    UserrDetails getLoggedUser(Authentication authentication) {
+        return (UserrDetails) authentication.getPrincipal();
+    }
 
 }

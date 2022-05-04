@@ -20,8 +20,8 @@
     <link rel="stylesheet" th:href="@{/css/owl.theme.default.css}">
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <link rel="icon" th:href="@{/img/logo/ico2.ico}">
-    <!--    <title th:if="${post.getId()} !=0 " th:text="${post.getName()} + ' | Update'"></title>-->
-    <!--    <title th:if="${post.getId()} ==0" th:text="'New post'"></title>-->
+    <title th:if="${post.getId()} !=0 " th:text="${post.getName()} + ' | Update'"></title>
+    <title th:if="${post.getId()} ==0" th:text="'New post'"></title>
 </head>
 <body>
 
@@ -55,7 +55,7 @@
     <div class="col-12 e-posting-container">
         <div class="e-posting-content">
             <div class="e-posting-img">
-                <img alt="" th:src="${post.getImage()}"
+                <img alt="" th:src="${post.image}"
                      height="150"
                      width="300">
             </div>
@@ -63,7 +63,7 @@
                 <form class="col-lg-12 col-md-6 col-sm-12 form-group d-inline-block e-form"
                       enctype="multipart/form-data"
                       method="post">
-                    <input th:value="${post.getName()}" class="col-12 form-control-lg e-input" name="name"
+                    <input th:value="${post.name}" class="col-12 form-control-lg e-input" name="name"
                            placeholder="Enter product name" required type="text">
                     <select class="col-12 form-control-lg e-input" name="category" required>
                         <option disabled selected>Select category</option>
@@ -119,7 +119,7 @@
             <i class="far fa-copyright mr-2"></i>
             All rights reserved | You should have permission by author for using any information or data provided by
             this website. <br>
-            This website is made by Ayshan Rzayeva | Shafa Mammadova | Leman Javadova | Emin Israfilzadeh
+            This website is made by Elnur Ahmadov
         </p>
     </div>
 </div>
