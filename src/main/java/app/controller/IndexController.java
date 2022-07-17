@@ -15,26 +15,25 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/")
 public class IndexController {
 
-  private final MailRequestService mailRequestService;
-  private final AboutUsService aboutUsService;
-  private final MissionService missionService;
-  private final PhoneService phoneService;
-  private final AddressService addressService;
+    private final MailRequestService mailRequestService;
+    private final AboutUsService aboutUsService;
+    private final MissionService missionService;
+    private final PhoneService phoneService;
+    private final AddressService addressService;
 
-  // http://localhost:8080/
-  @GetMapping
-  public String handle_get(Model model) {
-    model.addAttribute("aboutUs", aboutUsService.findAll());
-    model.addAttribute("missions", missionService.findAll());
-    model.addAttribute("phones", phoneService.findAll());
-    model.addAttribute("addresses", addressService.findAll());
-    return "index";
-  }
+    @GetMapping
+    public String handle_get(Model model) {
+        model.addAttribute("aboutUs", aboutUsService.findAll());
+        model.addAttribute("missions", missionService.findAll());
+        model.addAttribute("phones", phoneService.findAll());
+        model.addAttribute("addresses", addressService.findAll());
+        return "index";
+    }
 
-  @PostMapping
-  public RedirectView handle_post(FormAd form, Model model) {
-    mailRequestService.sendAdRequest(form.getFullName(), form.getNumber(), form.getTime());
-    model.addAttribute("process", "adv");
-    return new RedirectView("/");
-  }
+    @PostMapping
+    public RedirectView handle_post(FormAd form, Model model) {
+        mailRequestService.sendAdRequest(form.getFullName(), form.getNumber(), form.getTime());
+        model.addAttribute("process", "adv");
+        return new RedirectView("/");
+    }
 }

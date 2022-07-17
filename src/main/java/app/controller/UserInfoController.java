@@ -22,31 +22,31 @@ import org.springframework.web.servlet.view.RedirectView;
 @RequestMapping("/info")
 public class UserInfoController {
 
-  private final UserService userService;
-  private final CityService cityService;
+    private final UserService userService;
+    private final CityService cityService;
 
-  @GetMapping
-  public String handle_get(Model model, Authentication au) {
-    if (userService.isInfoFilled(getLoggedUser(au).getId()))
-      return "redirect:/dashboard/1";
+    @GetMapping
+    public String handle_get(Model model, Authentication au) {
+        if (userService.isInfoFilled(getLoggedUser(au).getId()))
+            return "redirect:/dashboard/1";
 
-    model.addAttribute("cities", cityService.getCities());
-    model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
-    return "anket";
-  }
+        model.addAttribute("cities", cityService.getCities());
+        model.addAttribute("loggedUser", userService.findByEmail(getLoggedUser(au).getUsername()));
+        return "anket";
+    }
 
-  @PostMapping
-  public RedirectView handle_post(FormInfo form,
-                                  @RequestParam("image") MultipartFile file,
-                                  Authentication au) {
-    userService.fillInfo(
-            String.valueOf(getLoggedUser(au).getId()), form.getName(),
-            form.getSurname(), form.getCity(), form.getNumber(), file);
-    return new RedirectView("dashboard");
-  }
+    @PostMapping
+    public RedirectView handle_post(FormInfo form,
+                                    @RequestParam("image") MultipartFile file,
+                                    Authentication au) {
+        userService.fillInfo(
+                String.valueOf(getLoggedUser(au).getId()), form.getName(),
+                form.getSurname(), form.getCity(), form.getNumber(), file);
+        return new RedirectView("dashboard");
+    }
 
-  UserrDetails getLoggedUser(Authentication authentication) {
-    return (UserrDetails) authentication.getPrincipal();
-  }
+    UserrDetails getLoggedUser(Authentication authentication) {
+        return (UserrDetails) authentication.getPrincipal();
+    }
 
 }

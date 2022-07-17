@@ -30,7 +30,7 @@
         <div class="form-logo col-12 mb-3 m-0 px-0">
             <img src="img/logo/handy-bg.png" class="logo-img" width="350" height="120">
         </div>
-        <h3 class="col-12 form-title">Give some basic  information about yourself</h3>
+        <h3 class="col-12 form-title">Give some basic information about yourself</h3>
     </div>
 
     <form method="post" class="col-12 form-group d-inline-block e-form" enctype="multipart/form-data">
@@ -47,7 +47,8 @@
             <option disabled selected>Select your city</option>
             <option th:each="city : ${cities}" th:value="${city.name}" th:text="${city.name}"></option>
         </select>
-        <input name="number" required type="text" class="col-12 form-control e-input" placeholder="Enter your mobile number: XXYYYZZWW">
+        <input name="number" required type="text" class="col-12 form-control e-input"
+               placeholder="Enter your mobile number: XXYYYZZWW">
         <label for="profile-pic" class="form-control text-left e-label">Upload profile photo</label>
         <input name="image" type="file" class="col-12 form-control-file e-file" id="profile-pic">
         <input name="save" type="submit" value="Save" class="col-12 form-control e-submit">

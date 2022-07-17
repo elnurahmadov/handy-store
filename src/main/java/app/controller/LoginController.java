@@ -15,16 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/signin")
 public class LoginController {
 
-  // http://localhost:8085/signin
+    @GetMapping
+    public String handle_get() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-  @GetMapping
-  public String handle_get() {
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-    if (!(auth instanceof AnonymousAuthenticationToken)) {
-      return "redirect:/dashboard";
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return "redirect:/dashboard";
+        }
+        return "signin";
     }
-    return "signin";
-  }
 
 }

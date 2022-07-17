@@ -61,7 +61,8 @@
                         <a th:case="${connection.from.getId()}" th:href="'/message/'+${connection.to.getId()}"
                            class="card-link d-flex flex-wrap flex-wrap m-0 d-inline-block" style="height: 70px;">
                             <div class="col-1 m-0 p-0 e-chat-user-img">
-                                <img th:src="${connection.to.getImage()}" style="object-fit: cover" width="50" height="50" alt="">
+                                <img th:src="${connection.to.getImage()}" style="object-fit: cover" width="50"
+                                     height="50" alt="">
                             </div>
                             <div class="col-11 d-flex flex-wrap justify-content-start p-0 pl-2 e-chat-user">
                                 <h5 th:text="${connection.to.getName()}+ ' ' + ${connection.to.getSurname()}"
@@ -74,22 +75,23 @@
                                    style="margin-bottom: 3px!important;"></p>
                             </div>
                         </a>
-                        <!--                        <a th:case="${connection.to.getId()}" th:href="'/message/'+${connection.from.getId()}"-->
-                        <!--                           class="card-link d-flex flex-wrap flex-wrap m-0 d-inline-block" style="height: 70px;">-->
-                        <!--                            <div class="col-1 m-0 p-0 e-chat-user-img">-->
-                        <!--                                <img th:src="${connection.from.getImage()}" style="object-fit: cover" width="50" height="50" alt="">-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-11 d-flex flex-wrap justify-content-start p-0 pl-2 e-chat-user">-->
-                        <!--                                <h5 th:text="${connection.from.getName()}+ ' ' + ${connection.from.getSurname()}"-->
-                        <!--                                    class="col-12 text-left m-1 mb-3 p-0 e-chat-sender"></h5>-->
-                        <!--                                <p th:text="${connection.message}"-->
-                        <!--                                   class="col-7 d-inline-block text-left p-0 m-0 e-chat-text"-->
-                        <!--                                   style="margin-bottom: 3px!important;"></p>-->
-                        <!--                                <p th:text="${#temporals.format(connection.date, 'dd-MM-yyyy HH:mm')}"-->
-                        <!--                                   class="col-5 d-inline-block text-right font-italic p-0 m-0 pr-1 e-chat-date"-->
-                        <!--                                   style="margin-bottom: 3px!important;"></p>-->
-                        <!--                            </div>-->
-                        <!--                        </a>-->
+                        <a th:case="${connection.to.getId()}" th:href="'/message/'+${connection.from.getId()}"
+                           class="card-link d-flex flex-wrap flex-wrap m-0 d-inline-block" style="height: 70px;">
+                            <div class="col-1 m-0 p-0 e-chat-user-img">
+                                <img th:src="${connection.from.getImage()}" style="object-fit: cover" width="50"
+                                     height="50" alt="">
+                            </div>
+                            <div class="col-11 d-flex flex-wrap justify-content-start p-0 pl-2 e-chat-user">
+                                <h5 th:text="${connection.from.getName()}+ ' ' + ${connection.from.getSurname()}"
+                                    class="col-12 text-left m-1 mb-3 p-0 e-chat-sender"></h5>
+                                <p th:text="${connection.message}"
+                                   class="col-7 d-inline-block text-left p-0 m-0 e-chat-text"
+                                   style="margin-bottom: 3px!important;"></p>
+                                <p th:text="${#temporals.format(connection.date, 'dd-MM-yyyy HH:mm')}"
+                                   class="col-5 d-inline-block text-right font-italic p-0 m-0 pr-1 e-chat-date"
+                                   style="margin-bottom: 3px!important;"></p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -103,20 +105,26 @@
     <footer class="col-12 mt-3 e-footer-container" id="contact">
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item text-left"><a href="/update"><i class="fas fa-user-edit col-2"></i>Manage your account</a></li>
-                <li class="col-12 my-1 e-footer-item text-left"><a href="/myposts"><i class="fas fa-edit col-2"></i>Manage your posts</a></li>
+                <li class="col-12 my-1 e-footer-item text-left"><a href="/update"><i class="fas fa-user-edit col-2"></i>Manage
+                    your account</a></li>
+                <li class="col-12 my-1 e-footer-item text-left"><a href="/myposts"><i class="fas fa-edit col-2"></i>Manage
+                    your posts</a></li>
             </ul>
         </section>
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item"><a href="/feedback" class=""><i class="fas fa-exclamation-triangle col-2"></i>Send feedback</a></li>
+                <li class="col-12 my-1 e-footer-item"><a href="/feedback" class=""><i
+                        class="fas fa-exclamation-triangle col-2"></i>Send feedback</a></li>
             </ul>
         </section>
         <section class="col-lg-4 col-md-4 col-sm-12 e-footer-content">
             <ul class="col-12 e-footer-list">
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.facebook.com/"><i class="fab fa-facebook-f col-2"></i>Facebook</a></li>
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.instagram.com/"><i class="fab fa-instagram col-2"></i>Instagram</a></li>
-                <li class="col-12 my-1 e-footer-item"><a class="" href="https://twitter.com/"><i class="fab fa-twitter col-2"></i>Twitter</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.facebook.com/"><i
+                        class="fab fa-facebook-f col-2"></i>Facebook</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://www.instagram.com/"><i
+                        class="fab fa-instagram col-2"></i>Instagram</a></li>
+                <li class="col-12 my-1 e-footer-item"><a class="" href="https://twitter.com/"><i
+                        class="fab fa-twitter col-2"></i>Twitter</a></li>
             </ul>
         </section>
     </footer>
